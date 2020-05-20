@@ -105,7 +105,11 @@ is_command() {
 }
 uname_os() {
   os=$(uname -s | tr '[:upper:]' '[:lower:]')
-  echo "$os"
+  case $os in
+    msys*) os="windows" ;;
+    mingw*) os="windows" ;;
+  esac
+  echo "${os}"
 }
 uname_arch() {
   arch=$(uname -m)
